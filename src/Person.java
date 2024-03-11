@@ -8,6 +8,8 @@ public class Person {
   private int age;
   private boolean isMarried = false;
 
+  private Car car;
+
   public Person() {
     this("nameless", "nameless");
   }
@@ -140,5 +142,26 @@ public class Person {
         ", age=" + age +
         ", isMarried=" + isMarried +
         '}';
+  }
+
+  public Car getCar() {
+    return this.car;
+  }
+
+  public void setCar(final Car car) {
+    if (this.car != null) {
+      this.car.removeOwner();
+    }
+    this.car = car;
+    if (this != car.getOwner()) {
+      car.setOwner(this);
+    }
+  }
+
+  public void removeCar() {
+    if (this.car != null) {
+      this.car.removeOwner();
+    }
+    this.car = null;
   }
 }

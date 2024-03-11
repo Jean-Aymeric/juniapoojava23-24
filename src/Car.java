@@ -8,6 +8,8 @@ public class Car {
   private String brand;
   private ArrayList<Door> doors;
 
+  private Person owner;
+
   public Car() {
     this(new Color("Blanc"), "xx-xxx-xx", 4, "Inconnu");
   }
@@ -92,5 +94,23 @@ public class Car {
         ", doors=" + this.doors +
         ", brand='" + brand + '\'' +
         '}';
+  }
+
+  public Person getOwner() {
+    return this.owner;
+  }
+
+  public void setOwner(final Person owner) {
+    if (this.owner != null) {
+      this.owner.removeCar();
+    }
+    this.owner = owner;
+    if (this != owner.getCar()) {
+      owner.setCar(this);
+    }
+  }
+
+  public void removeOwner() {
+    this.owner = null;
   }
 }
